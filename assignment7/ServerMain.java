@@ -27,6 +27,7 @@ public class ServerMain extends Observable {
 //	private List<String> clients;
 	private Map<String, ClientObserver> observedUsers;
 	private List<ChatRoom> rooms;
+	private boolean changeInUsers;
 
 	private ServerSocket ssocket;
 	
@@ -119,32 +120,53 @@ public class ServerMain extends Observable {
 							rooms.add(newRoom);
 							newRoom.ID = rooms.indexOf(newRoom);
 							newRoom.addUsers(groupAL);
-							newRoom.sendMessage("server: Welcome to the group chat!"); //maybe it will display on only one screen?
+							newRoom.sendMessage("" + Integer.toString(newRoom.ID) + " " + "server" + " " + "This is a new chat between: " + groupAL);
 						}
 					}
 
 					//adding a user to an existing room
 					else if (splitMessage[0].equalsIgnoreCase("join_room")){
 						ArrayList<String> userAL = new ArrayList<String>(Arrays.asList(splitMessage[1]));
-						rooms.get(Integer.parseInt(splitMessage[2])).addUsers(userAL);
-						rooms.get(Integer.parseInt(splitMessage[2])).sendMessage("server: " + userAL.get(0) + " has joined the room.");
+						ChatRoom existingRoom = rooms.get(Integer.parseInt(splitMessage[2]));
+						existingRoom.addUsers(userAL);
+						existingRoom.sendMessage("server: " + userAL.get(0) + " has joined the room.");
 					}
 
 					// a user should send in its user name when it is first created
 					//determine whether to create a new user, or if one exists then return a message saying so
 					else if (splitMessage[0].equalsIgnoreCase("new_user")){
 						if (observedUsers.containsKey(splitMessage[1])){
-							writer.println("server: This username already exists, please try another username.");
+//							writer.println("server: This username already exists, please try another username.");
 						} else {
 							this.username = splitMessage[1];
 							observedUsers.put(username, writer);
+							changeInUsers = true;
 						}
 					}
 
 					// retrieve all online people if there has been a change in
 					// # of clients and print out change to every client
 					else if (splitMessage[0].equalsIgnoreCase("show_online")){
-						//necessary??
+						if(changeInUsers) {
+							changeInUsers = false;
+							Set<String> keys = 	observedUsers.keySet();
+							String names = "";
+
+							// create String with all online user names
+							for(String user: keys) {
+								names += user + " ";
+							}
+
+
+							ChatRoom temp = new ChatRoom();
+							ArrayList<String> splitNames = new ArrayList<>(Arrays.asList(names.trim().split("\\s+")));
+							temp.addUsers(splitNames);
+							// return back GETONLINE string with user names separated by nameSeparator
+							names = ("show_online" + " " + splitMessage[1] + " " + names);
+
+							// use chat room observer pattern to send message
+							temp.sendMessage(names);
+						}
 					}
 
 
