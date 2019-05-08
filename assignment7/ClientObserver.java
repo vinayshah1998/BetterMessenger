@@ -1,4 +1,4 @@
-/* CHAT ROOM ClientObserver.java
+/* CHAT ROOM <MyClass.java>
  * EE422C Project 7 submission by
  * Replace <...> with your actual data.
  * Vinay Shah
@@ -11,6 +11,7 @@
  * Spring 2019
  */
 
+
 package assignment7;
 
 import java.io.OutputStream;
@@ -22,11 +23,10 @@ public class ClientObserver extends PrintWriter implements Observer {
 	public ClientObserver(OutputStream out) {
 		super(out);
 	}
-	
 	@Override
 	public void update(Observable o, Object arg) {
-		this.print(arg);
-		this.flush();
+		this.println(arg); //writer.println(arg);
+		this.flush(); //writer.flush();
 	}
-	
+
 }
