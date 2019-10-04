@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" prefHeight="300.0" prefWidth="680.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="assignment7.ChatClient">
+   <children>
+      <SplitPane dividerPositions="0.25267379679144386, 0.8088235294117647" prefHeight="400.0" prefWidth="750.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <items>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="122.0">
+               <children>
+                  <ToolBar prefHeight="40.0" prefWidth="161.0" style="-fx-region-background: blue;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <items>
+                        <TextField fx:id="searchField" prefHeight="27.0" prefWidth="149.0" promptText="Search Messanger" style="-fx-border-color: blue;">
+                           <font>
+                              <Font size="11.0" />
+                           </font></TextField>
+                     </items>
+                  </ToolBar>
+                  <ListView fx:id="conversationList" layoutX="-31.0" layoutY="29.0" onMouseClicked="#resumeConversation" opacity="0.55" prefHeight="358.0" prefWidth="161.0" style="-fx-background-color: cornflowerblue;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <SplitPane dividerPositions="0.7070422535211267" layoutX="132.0" layoutY="114.0" orientation="VERTICAL" prefHeight="350.0" prefWidth="257.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <items>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="266.0" prefWidth="408.0">
+                           <children>
+                              <ListView fx:id="chatList" layoutX="1.0" layoutY="37.0" prefHeight="208.0" prefWidth="369.0" style="-fx-background-color: beige;" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="37.0">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets></ListView>
+                              <Label graphicTextGap="6.0" layoutX="57.0" prefHeight="40.0" prefWidth="258.0" text="MESSENGER SUPREME" textFill="#e40242">
+                                 <font>
+                                    <Font name="System Bold Italic" size="24.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                      <AnchorPane maxHeight="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="205.0" prefWidth="363.0">
+                           <children>
+                              <TextArea fx:id="outgoingMessage" layoutX="71.0" layoutY="11.0" prefHeight="79.0" prefWidth="295.0" style="-fx-background-color: red;" AnchorPane.bottomAnchor="11.0" AnchorPane.leftAnchor="71.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="11.0" />
+                              <Button fx:id="sendButton" layoutY="11.0" mnemonicParsing="false" onAction="#sendMessage" prefHeight="79.0" prefWidth="71.0" style="-fx-background-color: pink;" text="SEND" textFill="#ed0000" textOverrun="LEADING_ELLIPSIS" underline="true" AnchorPane.bottomAnchor="11.0" AnchorPane.rightAnchor="298.0" AnchorPane.topAnchor="11.0" />
+                           </children>
+                           <effect>
+                              <Glow />
+                           </effect>
+                        </AnchorPane>
+                    </items>
+                  </SplitPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="398.0" prefWidth="115.0">
+               <children>
+                  <ListView fx:id="onlineUsersList" layoutY="87.0" opacity="0.29" prefHeight="317.0" prefWidth="140.0" style="-fx-background-color: green;" AnchorPane.bottomAnchor="-6.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="87.0" />
+                  <ButtonBar buttonMinWidth="50.0" layoutY="40.0" prefHeight="40.0" prefWidth="140.0" AnchorPane.bottomAnchor="318.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                     <padding>
+                        <Insets right="10.0" />
+                     </padding>
+                     <buttons>
+                        <Label alignment="CENTER" prefHeight="30.0" prefWidth="123.0" text="Online Users" textAlignment="RIGHT" textFill="#f71c0c">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </buttons>
+                  </ButtonBar>
+                  <ToolBar layoutY="47.0" prefHeight="40.0" prefWidth="148.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="47.0">
+                     <items>
+                        <Button fx:id="newChatButton" mnemonicParsing="false" onAction="#startConversation" prefHeight="25.0" prefWidth="53.0" text="New" textFill="#0084ef" />
+                        <Button fx:id="addToChatButton" mnemonicParsing="false" onAction="#addToChat" prefHeight="25.0" prefWidth="53.0" text="Add" textFill="#48910f" />
+                     </items>
+                  </ToolBar>
+               </children>
+            </AnchorPane>
+         </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

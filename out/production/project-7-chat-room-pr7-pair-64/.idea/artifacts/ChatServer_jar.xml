@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
-  <artifact type="jar" name="project-7-chat-room-pr7-pair-64:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/project_7_chat_room_pr7_pair_64_jar</output-path>
+  <artifact type="jar" name="ChatServer:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/ChatServer_jar</output-path>
     <root id="archive" name="project-7-chat-room-pr7-pair-64.jar">
       <element id="module-output" name="project-7-chat-room-pr7-pair-64" />
     </root>
